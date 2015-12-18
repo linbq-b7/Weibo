@@ -26,10 +26,6 @@
     WBTabBarController *tabbarVC = [[WBTabBarController alloc]init];
     self.window.rootViewController = tabbarVC;
     
-    
-    
-    
-    
     // 3.显示窗口(成为主窗口)
     [self.window makeKeyAndVisible];
 
