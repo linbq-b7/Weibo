@@ -10,6 +10,13 @@
 #define Weibo_Prefix_pch
 
 #import "UIImage+Extension.h"
+#import "UIView+Extension.h"
+
+#ifdef DEBUG // 调试状态, 打开LOG功能
+#define WBLog(...) NSLog(__VA_ARGS__)
+#else // 发布状态, 关闭LOG功能
+#define WBLog(...)
+#endif
 
 // 随机颜色
 #define WBRandomColor [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0]

@@ -12,7 +12,6 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    
     // 非栈底控制器时,隐藏底部导航条
     if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;

@@ -21,7 +21,7 @@
 //    [btn setBackgroundImage:[UIImage imageNamed:@"navigationbar_friendsearch"] forState:UIControlStateNormal];
 //    [btn setBackgroundImage:[UIImage imageNamed:@"navigationbar_friendsearch_highlighted"] forState:UIControlStateHighlighted];
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:btn target:nil action:nil];
-
+//
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -43,7 +43,6 @@
     return 20;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *ID = @"cell";
@@ -59,9 +58,7 @@
 {
     UIViewController *tableVC = [[UIViewController alloc]init];
     tableVC.view.backgroundColor = WBRandomColor;
-//    tableVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:tableVC animated:YES];
-
 
 }
 

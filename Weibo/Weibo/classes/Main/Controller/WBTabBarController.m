@@ -52,7 +52,7 @@
 {
 //    childVC.view.backgroundColor = WBRandomColor;
     // 设置标题
-    childVC.tabBarItem.title = title;
+    childVC.title = title;
     // 设置默认图片
     childVC.tabBarItem.image = [UIImage imageWithName:imageName];
     // 设置选择图片
