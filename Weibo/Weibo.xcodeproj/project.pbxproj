@@ -11,6 +11,7 @@
 		6B76F6C11C244C5F00B32424 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6BF1C244C5F00B32424 /* UIView+Extension.m */; };
 		6B76F6C41C28333100B32424 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6C31C28333100B32424 /* UIBarButtonItem+Extension.m */; };
 		6B76F6C71C28685B00B32424 /* WBSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6C61C28685B00B32424 /* WBSearchBar.m */; };
+		6B76F6CA1C28803100B32424 /* WBTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6C91C28803100B32424 /* WBTitleButton.m */; };
 		6BB415121C243F88007FBC6C /* WBDiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB414EC1C243F88007FBC6C /* WBDiscoverTableViewController.m */; };
 		6BB415131C243F88007FBC6C /* WBHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB414F21C243F88007FBC6C /* WBHomeTableViewController.m */; };
 		6BB415161C243F88007FBC6C /* WBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB414FD1C243F88007FBC6C /* WBNavigationController.m */; };
@@ -43,6 +44,8 @@
 		6B76F6C31C28333100B32424 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		6B76F6C51C28685B00B32424 /* WBSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSearchBar.h; sourceTree = "<group>"; };
 		6B76F6C61C28685B00B32424 /* WBSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSearchBar.m; sourceTree = "<group>"; };
+		6B76F6C81C28803100B32424 /* WBTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTitleButton.h; sourceTree = "<group>"; };
+		6B76F6C91C28803100B32424 /* WBTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTitleButton.m; sourceTree = "<group>"; };
 		6B8447BE1C241A3B00DE577E /* Weibo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Weibo-Prefix.pch"; sourceTree = "<group>"; };
 		6BB414EB1C243F88007FBC6C /* WBDiscoverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBDiscoverTableViewController.h; sourceTree = "<group>"; };
 		6BB414EC1C243F88007FBC6C /* WBDiscoverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBDiscoverTableViewController.m; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 		6BB414F41C243F88007FBC6C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6B76F6C81C28803100B32424 /* WBTitleButton.h */,
+				6B76F6C91C28803100B32424 /* WBTitleButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 				6B76F6C01C244C5F00B32424 /* UIImage+Extension.m in Sources */,
 				6BB4151B1C243F88007FBC6C /* WBProfileTableViewController.m in Sources */,
 				6BB415161C243F88007FBC6C /* WBNavigationController.m in Sources */,
+				6B76F6CA1C28803100B32424 /* WBTitleButton.m in Sources */,
 				6BB4151A1C243F88007FBC6C /* main.m in Sources */,
 				6BB4151E1C243FCF007FBC6C /* WBComposeTableViewController.m in Sources */,
 			);

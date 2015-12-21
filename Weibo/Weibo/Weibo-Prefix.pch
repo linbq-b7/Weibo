@@ -26,6 +26,11 @@
 #define IOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 
 
+// 导航栏标题字体大小
+#define WBNavTitleFont [UIFont systemFontOfSize:20]
+
+
+
 #endif
 
 

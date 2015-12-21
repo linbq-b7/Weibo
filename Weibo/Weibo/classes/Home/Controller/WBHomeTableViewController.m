@@ -7,6 +7,7 @@
 //
 
 #import "WBHomeTableViewController.h"
+#import "WBTitleButton.h"
 
 @interface WBHomeTableViewController ()
 
@@ -20,6 +21,41 @@
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem initWithImageName:@"navigationbar_friendsearch" highlightedImageName:@"navigationbar_friendsearch_highlighted" target:self action:@selector(friendsearch)];
    
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem initWithImageName:@"navigationbar_pop" highlightedImageName:@"navigationbar_pop_highlighted" target:self action:@selector(pop)];
+    
+    
+    WBTitleButton *titleBtn = [[WBTitleButton alloc]init];
+    // 设置按钮文字
+    [titleBtn setTitle:@"首页" forState:UIControlStateNormal];
+    [titleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    titleBtn.titleLabel.font = WBNavTitleFont;
+    
+    // 设置图标
+    [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+    [titleBtn setBackgroundImage:[UIImage resizedImage:@"navigationbar_filter_background_highlighted"] forState:UIControlStateHighlighted];
+    titleBtn.contentMode = UIViewContentModeCenter;
+    
+    // 设置长按按钮,图片不要变灰
+    titleBtn.adjustsImageWhenHighlighted = NO;
+    
+    // 设置大小
+    titleBtn.width = 100;
+    titleBtn.height = 35;
+    
+    // 添加按钮点击事件
+    [titleBtn addTarget:self action:@selector(titleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.titleView = titleBtn;
+    
+}
+
+- (void)titleBtnClick:(UIButton *)titleBtn
+{
+    if (titleBtn.tag == 0) {
+        titleBtn.tag = 1;
+        [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
+    }else{
+        titleBtn.tag = 0;
+        [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
