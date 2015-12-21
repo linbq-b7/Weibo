@@ -10,13 +10,6 @@
 
 @implementation UIImage (Extension)
 
-/**
- *  图片兼容ios6.0与更高版本
- *
- *  @param name <#name description#>
- *
- *  @return <#return value description#>
- */
 + (UIImage *)imageWithName:(NSString *)name
 {
     UIImage * image = nil;
@@ -30,6 +23,12 @@
     }
     
     return image;
+}
+
++ (UIImage *)resizedImage:(NSString *)name
+{
+    UIImage *image = [UIImage imageWithName:name];
+    return [image stretchableImageWithLeftCapWidth:image.size.width * 0.5 topCapHeight:image.size.height * 0.5];
 }
 
 @end

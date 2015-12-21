@@ -17,17 +17,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"发现群" style:UIBarButtonItemStylePlain target:self action:@selector(foundGroup)];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem initWithImageName:@"navigationbar_icon_newchat" highlightedImageName:@"navigationbar_icon_newchat_highlight" target:self action:@selector(newchat)]; 
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)foundGroup
+{
+    WBLog(@"WBMessageTableViewController foundGroup--------");
+    UIViewController *vc = [[UIViewController alloc]init];
+    vc.view.backgroundColor = WBRandomColor;
+    vc.title = @"发现群";
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+- (void)newchat
+{
+    WBLog(@"WBMessageTableViewController newchat--------");
+    UIViewController *vc = [[UIViewController alloc]init];
+    vc.view.backgroundColor = WBRandomColor;
+    vc.title = @"发起聊天";
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 
 #pragma mark - Table view data source
 

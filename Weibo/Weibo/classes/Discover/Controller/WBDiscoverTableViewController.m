@@ -7,6 +7,7 @@
 //
 
 #import "WBDiscoverTableViewController.h"
+#import "WBSearchBar.h"
 
 @interface WBDiscoverTableViewController ()
 
@@ -17,11 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    WBSearchBar *searchBar = [WBSearchBar searchBar];
+    searchBar.width = 300;
+    searchBar.height = 30;
+    self.navigationItem.titleView = searchBar;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {

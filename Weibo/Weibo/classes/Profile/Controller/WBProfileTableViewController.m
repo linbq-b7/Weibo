@@ -17,17 +17,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"添加好友" style:UIBarButtonItemStylePlain target:self action:@selector(addFriend)];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(setUp)];}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (void)addFriend
+{
+    WBLog(@"WBProfileTableViewController addFriend--------");
+    UIViewController *vc = [[UIViewController alloc]init];
+    vc.view.backgroundColor = WBRandomColor;
+    vc.title = @"添加好友";
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+- (void)setUp
+{
+    WBLog(@"WBProfileTableViewController setUp--------");
+    UIViewController *vc = [[UIViewController alloc]init];
+    vc.view.backgroundColor = WBRandomColor;
+    vc.title = @"设置";
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 
 #pragma mark - Table view data source
 

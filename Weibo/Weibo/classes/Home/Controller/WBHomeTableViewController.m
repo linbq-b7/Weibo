@@ -17,18 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    UIButton *btn = [[UIButton alloc]init];
-//    [btn setBackgroundImage:[UIImage imageNamed:@"navigationbar_friendsearch"] forState:UIControlStateNormal];
-//    [btn setBackgroundImage:[UIImage imageNamed:@"navigationbar_friendsearch_highlighted"] forState:UIControlStateHighlighted];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:btn target:nil action:nil];
-//
-    
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem initWithImageName:@"navigationbar_friendsearch" highlightedImageName:@"navigationbar_friendsearch_highlighted" target:self action:@selector(friendsearch)];
+   
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem initWithImageName:@"navigationbar_pop" highlightedImageName:@"navigationbar_pop_highlighted" target:self action:@selector(pop)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,6 +27,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)friendsearch
+{
+    WBLog(@"WBHomeTableViewController friendsearch--------");
+    UIViewController *vc = [[UIViewController alloc]init];
+    vc.view.backgroundColor = WBRandomColor;
+    vc.title = @"好友关注动态";
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+
+- (void)pop
+{
+    WBLog(@"WBHomeTableViewController pop--------");
+    UIViewController *vc = [[UIViewController alloc]init];
+    vc.view.backgroundColor = WBRandomColor;
+    vc.title = @"扫一扫";
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+     
+     
+     
+     
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
