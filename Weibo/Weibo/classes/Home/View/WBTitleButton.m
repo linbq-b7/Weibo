@@ -30,6 +30,9 @@
     return self;
 }
 
+/**
+ *  重写图片展示方法
+ */
 - (CGRect)imageRectForContentRect:(CGRect)contentRect
 {
     CGFloat imageY = 0;
@@ -39,6 +42,9 @@
     return CGRectMake(imageX, imageY, imageW, imageH);
 }
 
+/**
+ *  重写文字展示方法
+ */
 -(CGRect)titleRectForContentRect:(CGRect)contentRect
 {
     CGFloat titleX = 0;

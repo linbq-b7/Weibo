@@ -20,11 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 导航栏左边按钮
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem initWithImageName:@"navigationbar_friendsearch" highlightedImageName:@"navigationbar_friendsearch_highlighted" target:self action:@selector(friendsearch)];
-   
+    // 导航栏右边按钮
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem initWithImageName:@"navigationbar_pop" highlightedImageName:@"navigationbar_pop_highlighted" target:self action:@selector(pop)];
     
-    
+    // 创建文字图片按钮
     WBTitleButton *titleBtn = [[WBTitleButton alloc]init];
     // 设置按钮文字
     [titleBtn setTitle:@"首页" forState:UIControlStateNormal];
@@ -40,20 +41,27 @@
     
     // 添加按钮点击事件
     [titleBtn addTarget:self action:@selector(titleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    // 设置导航的titleView为文字图片按钮
     self.navigationItem.titleView = titleBtn;
     
 }
 
+/**
+ *  文字图片按钮点击事件
+ */
 - (void)titleBtnClick:(UIButton *)titleBtn
 {
 
     // 创建下拉菜单
     WBDropDownMenu *menu = [WBDropDownMenu createMenu];
     
+    // 创建下拉菜单内容控制器
     WBTitleMenuController *titleMenuVC = [[WBTitleMenuController alloc]init];
     titleMenuVC.view.backgroundColor = [UIColor clearColor];
     titleMenuVC.view.width = 180;
     titleMenuVC.view.height = 44 * 3;
+    
+    // 放入下拉菜单内容控制
     menu.contentController = titleMenuVC;
     
     // 设置menu代理为self
@@ -63,6 +71,9 @@
     [menu showMenuFromView:titleBtn];  
 }
 
+/**
+ *  导航栏左边按钮点击事件
+ */
 - (void)friendsearch
 {
     WBLog(@"WBHomeTableViewController friendsearch--------");
@@ -73,6 +84,9 @@
 
 }
 
+/**
+ *  导航栏右边按钮点击事件
+ */
 - (void)pop
 {
     WBLog(@"WBHomeTableViewController pop--------");
@@ -82,9 +96,7 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
-     
-     
-     
+    
      
 #pragma mark - Table view data source
 

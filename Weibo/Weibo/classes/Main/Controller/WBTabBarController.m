@@ -43,14 +43,13 @@
 /**
  *  添加一个子控制器
  *
- *  @param childVC           childVC description
- *  @param title             title description
- *  @param imageName         imageName description
- *  @param selectedImageName selectedImageName description
+ *  @param childVC           添加的子控制器对象
+ *  @param title             子控制器对象的名称
+ *  @param imageName         子控制器对象显示的图片名称
+ *  @param selectedImageName 子控制器对象选中时显示的图片名称
  */
 - (void)addOneChildVC:(UIViewController *)childVC title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName
 {
-//    childVC.view.backgroundColor = WBRandomColor;
     // 设置标题
     childVC.title = title;
     // 设置默认图片
@@ -75,10 +74,6 @@
     WBNavigationController *nav = [[WBNavigationController alloc]initWithRootViewController:childVC];
     // 添加到控制器
     [self addChildViewController:nav];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - WBTabBarDelegate 代理方法

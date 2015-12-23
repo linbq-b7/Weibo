@@ -10,6 +10,11 @@
 
 @interface WBSearchBar : UITextField
 
+/**
+ *  创建searchBar
+ *
+ *  @return 创建好的searchBar对象
+ */
 + (instancetype)searchBar;
 
 @end

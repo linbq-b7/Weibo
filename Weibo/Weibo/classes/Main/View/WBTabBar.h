@@ -12,6 +12,11 @@
 
 @protocol WBTabBarDelegate <UITabBarDelegate>
 @optional
+/**
+ *  tabBar点击加号按钮代理方法
+ *
+ *  @param tabbar self
+ */
 - (void)tabBarDidClickPlusBtn:(WBTabBar *)tabbar;
 @end
 

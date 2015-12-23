@@ -15,6 +15,7 @@
  */
 +(void)initialize
 {
+    // 设置UIBarButtonItem主题
     [self setUIBarButtonItemAppearance];
 
 }
@@ -24,7 +25,6 @@
  */
 + (void)setUIBarButtonItemAppearance
 {
-//    WBLog(@"WBNavigationController 初始化 UIBarButtonItem 主题...");
     // 通过appearance设置主题
     UIBarButtonItem *appearance = [UIBarButtonItem appearance];
     // 设置默认状态下字体为黑色
@@ -46,7 +46,9 @@
     [appearance setTitleTextAttributes:disabledText forState:UIControlStateDisabled];
 }
 
-
+/**
+ *  重写pushViewController方法
+ */
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     

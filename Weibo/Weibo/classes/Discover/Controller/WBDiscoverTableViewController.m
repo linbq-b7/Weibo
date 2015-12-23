@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 创建searchBar搜索栏
     WBSearchBar *searchBar = [WBSearchBar searchBar];
     searchBar.width = 300;
     searchBar.height = 30;

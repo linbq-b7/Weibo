@@ -11,7 +11,17 @@
 
 @protocol WBDropDownMenuDelegate <NSObject>
 @optional
+/**
+ *  下拉菜单消失 代理方法
+ *
+ *  @param menu self
+ */
 - (void)dropDownMenudismiss:(WBDropDownMenu *)menu;
+/**
+ *  下拉菜单显示 代理方法
+ *
+ *  @param menu self
+ */
 - (void)dropDownMenudisshow:(WBDropDownMenu *)menu;
 @end
 
@@ -39,7 +49,7 @@
  */
 - (void)showMenuFromView:(UIView *)fromView;
 /**
- *  销毁
+ *  下拉菜单销毁
  */
 - (void)dismiss;
 @end

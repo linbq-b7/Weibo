@@ -19,11 +19,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 导航栏左边按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"发现群" style:UIBarButtonItemStylePlain target:self action:@selector(foundGroup)];
     
+    // 导航栏右边按钮
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem initWithImageName:@"navigationbar_icon_newchat" highlightedImageName:@"navigationbar_icon_newchat_highlight" target:self action:@selector(newchat)];
     
-    
+    // 创建searchBar搜索栏
     WBSearchBar *searchBar = [WBSearchBar searchBar];
     searchBar.width = self.view.width;
     searchBar.height = 30;
@@ -31,11 +33,9 @@
     self.searchBar = searchBar;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
+/**
+ *  导航栏左边按钮点击事件
+ */
 - (void)foundGroup
 {
     WBLog(@"WBMessageTableViewController foundGroup--------");
@@ -46,6 +46,9 @@
     
 }
 
+/**
+ *  导航栏右边按钮点击事件
+ */
 - (void)newchat
 {
     WBLog(@"WBMessageTableViewController newchat--------");

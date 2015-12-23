@@ -75,13 +75,18 @@
     self.content = contentController.view;
 }
 
-
+/**
+ *  创建下拉菜单
+ */
 + (instancetype)createMenu
 {
     
     return [[self alloc]init];
 }
 
+/**
+ *  显示下拉菜单
+ */
 -(void)showMenuFromView:(UIView *)fromView
 {
     self.fromView = fromView;
@@ -106,7 +111,9 @@
     }
 }
 
-
+/**
+ *  下拉菜单销毁
+ */
 - (void)dismiss
 {
     [self removeFromSuperview];
@@ -116,6 +123,9 @@
     
 }
 
+/**
+ *  下拉菜单点击事件监听
+ */
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self dismiss];

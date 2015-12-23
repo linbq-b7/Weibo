@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Weibo/classes/Main/Controller/WBNavigationController.m"
-            timestampString = "472401531.477664"
+            timestampString = "472523625.795657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "@implementation WBNavigationController"
             landmarkType = "3">
          </BreakpointContent>

@@ -12,12 +12,12 @@
 /**
  *  初始化按钮
  *
- *  @param imageName            <#imageName description#>
- *  @param highlightedImageName <#highlightedImageName description#>
- *  @param target               <#target description#>
- *  @param action               <#action description#>
+ *  @param imageName            图片名称
+ *  @param highlightedImageName 高亮图片名称
+ *  @param target               监听事件的对象
+ *  @param action               事件
  *
- *  @return <#return value description#>
+ *  @return 创建好的按钮
  */
 + (UIBarButtonItem *)initWithImageName:(NSString *)imageName highlightedImageName:(NSString *)highlightedImageName target:(id)target action:(SEL)action;
 
