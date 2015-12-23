@@ -7,19 +7,28 @@
 //
 
 #import "WBMessageTableViewController.h"
+#import "WBSearchBar.h"
+#import "WBDropDownMenu.h"
 
 @interface WBMessageTableViewController ()
 
+@property (nonatomic, strong) WBSearchBar *searchBar;
 @end
 
 @implementation WBMessageTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"发现群" style:UIBarButtonItemStylePlain target:self action:@selector(foundGroup)];
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem initWithImageName:@"navigationbar_icon_newchat" highlightedImageName:@"navigationbar_icon_newchat_highlight" target:self action:@selector(newchat)]; 
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem initWithImageName:@"navigationbar_icon_newchat" highlightedImageName:@"navigationbar_icon_newchat_highlight" target:self action:@selector(newchat)];
+    
+    
+    WBSearchBar *searchBar = [WBSearchBar searchBar];
+    searchBar.width = self.view.width;
+    searchBar.height = 30;
+    [self.view addSubview:searchBar];
+    self.searchBar = searchBar;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,10 +49,19 @@
 - (void)newchat
 {
     WBLog(@"WBMessageTableViewController newchat--------");
-    UIViewController *vc = [[UIViewController alloc]init];
-    vc.view.backgroundColor = WBRandomColor;
-    vc.title = @"发起聊天";
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    WBDropDownMenu *titmeMenu = [WBDropDownMenu createMenu];
+    titmeMenu.height = 200;
+    titmeMenu.width = 200;
+    
+    titmeMenu.content = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [titmeMenu showMenuFromView:self.searchBar];
+    
+    
+//    UIViewController *vc = [[UIViewController alloc]init];
+//    vc.view.backgroundColor = WBRandomColor;
+//    vc.title = @"发起聊天";
+//    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

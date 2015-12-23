@@ -24,7 +24,7 @@
  */
 + (void)setUIBarButtonItemAppearance
 {
-    WBLog(@"初始化 UIBarButtonItem 主题...");
+//    WBLog(@"WBNavigationController 初始化 UIBarButtonItem 主题...");
     // 通过appearance设置主题
     UIBarButtonItem *appearance = [UIBarButtonItem appearance];
     // 设置默认状态下字体为黑色

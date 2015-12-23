@@ -13,7 +13,8 @@
 #import "WBDiscoverTableViewController.h"
 #import "WBProfileTableViewController.h"
 #import "WBNavigationController.h"
-@interface WBTabBarController ()
+#import "WBTabBar.h"
+@interface WBTabBarController () <WBTabBarDelegate>
 
 @end
 
@@ -28,17 +29,16 @@
     WBMessageTableViewController *message = [[WBMessageTableViewController alloc]init];
     [self addOneChildVC:message title:@"消息" imageName:@"tabbar_message_center"  selectedImageName:@"tabbar_message_center_selected"];
     
-//    WBComposeTableViewController *compose = [[WBComposeTableViewController alloc]init];
-//    [self addOneChildVC:compose title:nil imageName:@"tabbar_compose_icon_add" selectedImageName:@"tabbar_compose_icon_add_selected"];
-    
     WBDiscoverTableViewController *discover = [[WBDiscoverTableViewController alloc]init];
     [self addOneChildVC:discover title:@"发现" imageName:@"tabbar_discover"  selectedImageName:@"tabbar_discover_selected"];
     
     WBProfileTableViewController *profile = [[WBProfileTableViewController alloc]init];
     [self addOneChildVC:profile title:@"我" imageName:@"tabbar_profile"  selectedImageName:@"tabbar_profile_selected"];
-
+    
+    // 替换系统tabbar为自定义WBTabBar 
+    [self setValue:[[WBTabBar alloc]init] forKeyPath:@"tabBar"];
+    
 }
-
 
 /**
  *  添加一个子控制器
@@ -62,6 +62,15 @@
         selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     childVC.tabBarItem.selectedImage = selectedImage;
+    
+    // 设置文字的样式
+    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+    textAttrs[NSForegroundColorAttributeName] = [UIColor blackColor];
+    NSMutableDictionary *textAttrsSelected= [NSMutableDictionary dictionary];
+    textAttrsSelected[NSForegroundColorAttributeName] = [UIColor orangeColor];
+    [childVC.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
+    [childVC.tabBarItem setTitleTextAttributes:textAttrsSelected forState:UIControlStateSelected];
+    
     // 添加导航控制器
     WBNavigationController *nav = [[WBNavigationController alloc]initWithRootViewController:childVC];
     // 添加到控制器
@@ -72,6 +81,12 @@
     [super didReceiveMemoryWarning];
 }
 
-
+#pragma mark - WBTabBarDelegate 代理方法
+- (void)tabBarDidClickPlusBtn:(WBTabBar *)tabbar
+{
+    UIViewController *vc = [[UIViewController alloc]init];
+    vc.view.backgroundColor = [UIColor redColor];
+    [self presentViewController:vc animated:YES completion:nil];
+}
 
 @end

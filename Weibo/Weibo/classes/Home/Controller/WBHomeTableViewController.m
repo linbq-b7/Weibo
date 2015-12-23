@@ -8,8 +8,10 @@
 
 #import "WBHomeTableViewController.h"
 #import "WBTitleButton.h"
+#import "WBDropDownMenu.h"
+#import "WBTitleMenuController.h"
 
-@interface WBHomeTableViewController ()
+@interface WBHomeTableViewController () <WBDropDownMenuDelegate>
 
 @end
 
@@ -26,16 +28,11 @@
     WBTitleButton *titleBtn = [[WBTitleButton alloc]init];
     // 设置按钮文字
     [titleBtn setTitle:@"首页" forState:UIControlStateNormal];
-    [titleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    titleBtn.titleLabel.font = WBNavTitleFont;
     
     // 设置图标
     [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+    [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_up"] forState:UIControlStateSelected];
     [titleBtn setBackgroundImage:[UIImage resizedImage:@"navigationbar_filter_background_highlighted"] forState:UIControlStateHighlighted];
-    titleBtn.contentMode = UIViewContentModeCenter;
-    
-    // 设置长按按钮,图片不要变灰
-    titleBtn.adjustsImageWhenHighlighted = NO;
     
     // 设置大小
     titleBtn.width = 100;
@@ -49,18 +46,21 @@
 
 - (void)titleBtnClick:(UIButton *)titleBtn
 {
-    if (titleBtn.tag == 0) {
-        titleBtn.tag = 1;
-        [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
-    }else{
-        titleBtn.tag = 0;
-        [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
-    }
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // 创建下拉菜单
+    WBDropDownMenu *menu = [WBDropDownMenu createMenu];
+    
+    WBTitleMenuController *titleMenuVC = [[WBTitleMenuController alloc]init];
+    titleMenuVC.view.backgroundColor = [UIColor clearColor];
+    titleMenuVC.view.width = 180;
+    titleMenuVC.view.height = 44 * 3;
+    menu.contentController = titleMenuVC;
+    
+    // 设置menu代理为self
+    menu.delegate = self;
+    
+    // 显示下拉菜单
+    [menu showMenuFromView:titleBtn];  
 }
 
 - (void)friendsearch
@@ -110,6 +110,17 @@
     tableVC.view.backgroundColor = WBRandomColor;
     [self.navigationController pushViewController:tableVC animated:YES];
 
+}
+
+#pragma mark - WBDropDownMenuDelegate代理方法
+- (void)dropDownMenudismiss:(WBDropDownMenu *)menu
+{
+    ((UIButton *)self.navigationItem.titleView).selected = NO;
+}
+
+- (void)dropDownMenudisshow:(WBDropDownMenu *)menu
+{
+    ((UIButton *)self.navigationItem.titleView).selected = YES;
 }
 
 @end

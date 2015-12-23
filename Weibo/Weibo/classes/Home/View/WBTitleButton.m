@@ -18,6 +18,13 @@
         self.imageView.contentMode = UIViewContentModeCenter;
         // 设置文字属性右对齐
         self.titleLabel.textAlignment = NSTextAlignmentRight;
+        // 设置按钮文字
+        [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        self.titleLabel.font = WBNavTitleFont;
+        // 设置长按按钮,图片不要变灰
+        self.adjustsImageWhenHighlighted = NO;
+        // 设置图标
+        self.contentMode = UIViewContentModeCenter;
     
     }
     return self;
