@@ -22,6 +22,9 @@
 // 随机颜色
 #define WBRandomColor [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0]
 
+// RGB颜色
+#define WBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
 // 判断是否ios7.0 以上版本
 #define IOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 

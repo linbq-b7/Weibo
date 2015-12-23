@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "WBTabBarController.h"
-
+#import "WBNewFeatureViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -23,8 +23,12 @@
     self.window.frame = [UIScreen mainScreen].bounds;
     
     // 2.设置窗口根控制器
-    WBTabBarController *tabbarVC = [[WBTabBarController alloc]init];
-    self.window.rootViewController = tabbarVC;
+//    WBTabBarController *tabbarVC = [[WBTabBarController alloc]init];
+//    self.window.rootViewController = tabbarVC;
+    
+    WBNewFeatureViewController *newFeatureVC = [[WBNewFeatureViewController alloc]init];
+    self.window.rootViewController = newFeatureVC;
+    
     
     // 3.显示窗口(成为主窗口)
     [self.window makeKeyAndVisible];

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6B00E3331C29E13900E0E67A /* WBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B00E3321C29E13900E0E67A /* WBTabBar.m */; };
+		6B090F341C2A2E9100BC44FB /* WBNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B090F331C2A2E9100BC44FB /* WBNewFeatureViewController.m */; };
 		6B76F6C01C244C5F00B32424 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6BD1C244C5F00B32424 /* UIImage+Extension.m */; };
 		6B76F6C11C244C5F00B32424 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6BF1C244C5F00B32424 /* UIView+Extension.m */; };
 		6B76F6C41C28333100B32424 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6C31C28333100B32424 /* UIBarButtonItem+Extension.m */; };
@@ -41,6 +42,8 @@
 /* Begin PBXFileReference section */
 		6B00E3311C29E13900E0E67A /* WBTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTabBar.h; sourceTree = "<group>"; };
 		6B00E3321C29E13900E0E67A /* WBTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTabBar.m; sourceTree = "<group>"; };
+		6B090F321C2A2E9100BC44FB /* WBNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNewFeatureViewController.h; sourceTree = "<group>"; };
+		6B090F331C2A2E9100BC44FB /* WBNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNewFeatureViewController.m; sourceTree = "<group>"; };
 		6B76F6BC1C244C5F00B32424 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		6B76F6BD1C244C5F00B32424 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		6B76F6BE1C244C5F00B32424 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
@@ -99,6 +102,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B090F301C2A2E5400BC44FB /* NewFeature */ = {
+			isa = PBXGroup;
+			children = (
+				6B090F311C2A2E5400BC44FB /* Controller */,
+			);
+			path = NewFeature;
+			sourceTree = "<group>";
+		};
+		6B090F311C2A2E5400BC44FB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6B090F321C2A2E9100BC44FB /* WBNewFeatureViewController.h */,
+				6B090F331C2A2E9100BC44FB /* WBNewFeatureViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		6B76F6BB1C244C5F00B32424 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +141,7 @@
 				6BB414E51C243F88007FBC6C /* Compose */,
 				6BB414E91C243F88007FBC6C /* Discover */,
 				6BB4150C1C243F88007FBC6C /* Profile */,
+				6B090F301C2A2E5400BC44FB /* NewFeature */,
 				6BB415081C243F88007FBC6C /* Other */,
 			);
 			path = classes;
@@ -498,6 +519,7 @@
 				6B00E3331C29E13900E0E67A /* WBTabBar.m in Sources */,
 				6B76F6C41C28333100B32424 /* UIBarButtonItem+Extension.m in Sources */,
 				6BB415121C243F88007FBC6C /* WBDiscoverTableViewController.m in Sources */,
+				6B090F341C2A2E9100BC44FB /* WBNewFeatureViewController.m in Sources */,
 				6BB415171C243F88007FBC6C /* WBTabBarController.m in Sources */,
 				6B76F6C11C244C5F00B32424 /* UIView+Extension.m in Sources */,
 				6B76F6D01C29AB1400B32424 /* WBTitleMenuController.m in Sources */,
