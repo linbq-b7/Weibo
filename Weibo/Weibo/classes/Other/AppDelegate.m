@@ -23,13 +23,29 @@
     self.window.frame = [UIScreen mainScreen].bounds;
     
     // 2.设置窗口根控制器
-//    WBTabBarController *tabbarVC = [[WBTabBarController alloc]init];
-//    self.window.rootViewController = tabbarVC;
-    
-    WBNewFeatureViewController *newFeatureVC = [[WBNewFeatureViewController alloc]init];
-    self.window.rootViewController = newFeatureVC;
-    
-    
+    // 版本号判断,显示新特性
+    // 1.读取沙盒中的版本号
+    NSString *key = @"CFBundleVersion";
+    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    // 2.读取info.plist中的版本号
+    NSString *currVersion = [NSBundle mainBundle].infoDictionary[key];
+    // 3.比较沙盒中的版本号与info.plist的版本号
+    if ([lastVersion isEqualToString:currVersion]) {
+        // 版本号相同
+        // 直接进入首页
+        WBTabBarController *tabbarVC = [[WBTabBarController alloc]init];
+        self.window.rootViewController = tabbarVC;
+    }else {
+        // 版本号不同
+        // 4.将最新的版本号存入沙盒中
+        [[NSUserDefaults standardUserDefaults] setObject:currVersion forKey:key];
+        // 即刻通报沙盒数据
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        // 显示新特性
+        WBNewFeatureViewController *newFeatureVC = [[WBNewFeatureViewController alloc]init];
+        self.window.rootViewController = newFeatureVC;
+    }
+
     // 3.显示窗口(成为主窗口)
     [self.window makeKeyAndVisible];
 
