@@ -8,9 +8,23 @@
 
 #import "AppDelegate.h"
 #import "WBTabBarController.h"
-#import "WBNewFeatureViewController.h"
+#import "WBOAuthViewController.h"
+#import "WBAccountTool.h"
+
+#import <SDWebImageManager.h>
+
 @interface AppDelegate ()
 
+@end
+
+@implementation NSURLRequest(DataController)
+/**
+ *  https xcode7 ios9 报错处理
+ */
++ (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host
+{
+    return YES;
+}
 @end
 
 @implementation AppDelegate
@@ -22,37 +36,35 @@
     self.window = [[UIWindow alloc]init];
     self.window.frame = [UIScreen mainScreen].bounds;
     
-    // 2.设置窗口根控制器
-    // 版本号判断,显示新特性
-    // 1.读取沙盒中的版本号
-    NSString *key = @"CFBundleVersion";
-    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-    // 2.读取info.plist中的版本号
-    NSString *currVersion = [NSBundle mainBundle].infoDictionary[key];
-    // 3.比较沙盒中的版本号与info.plist的版本号
-    if ([lastVersion isEqualToString:currVersion]) {
-        // 版本号相同
-        // 直接进入首页
-        WBTabBarController *tabbarVC = [[WBTabBarController alloc]init];
-        self.window.rootViewController = tabbarVC;
-    }else {
-        // 版本号不同
-        // 4.将最新的版本号存入沙盒中
-        [[NSUserDefaults standardUserDefaults] setObject:currVersion forKey:key];
-        // 即刻通报沙盒数据
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        // 显示新特性
-        WBNewFeatureViewController *newFeatureVC = [[WBNewFeatureViewController alloc]init];
-        self.window.rootViewController = newFeatureVC;
+    // 从沙盒中读取微博账号信息
+    WBAccount *account = [WBAccountTool account];
+    
+    if (account) {
+        [self.window switchRootViewController];
+    
+    } else {
+        // 不存在账号信息
+        self.window.rootViewController = [[WBOAuthViewController alloc]init];
     }
-
+    
+    
+    
     // 3.显示窗口(成为主窗口)
     [self.window makeKeyAndVisible];
 
     return YES;
 }
 
-
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    SDWebImageManager *mgr = [SDWebImageManager sharedManager];
+    // 1.取消下载
+    [mgr cancelAll];
+    
+    // 2.清楚内存中的所有图片
+    [mgr.imageCache clearMemory];
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

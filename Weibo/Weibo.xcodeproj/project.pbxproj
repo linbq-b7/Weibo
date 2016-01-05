@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		6B00E3331C29E13900E0E67A /* WBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B00E3321C29E13900E0E67A /* WBTabBar.m */; };
 		6B090F341C2A2E9100BC44FB /* WBNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B090F331C2A2E9100BC44FB /* WBNewFeatureViewController.m */; };
+		6B11FA1B1C3B0B8300C0A61B /* UIWindow+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B11FA1A1C3B0B8300C0A61B /* UIWindow+Extension.m */; };
+		6B11FA1E1C3B130900C0A61B /* WBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B11FA1D1C3B130900C0A61B /* WBUser.m */; };
+		6B42B3851C3B27EB0028A40C /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B42B3841C3B27EB0028A40C /* Foundation+Log.m */; };
+		6B42B3881C3B39B50028A40C /* WBStatuse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B42B3871C3B39B50028A40C /* WBStatuse.m */; };
+		6B606F6F1C3ACB06006D6B92 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B606F6B1C3ACB06006D6B92 /* MBProgressHUD+MJ.m */; };
+		6B606F701C3ACB06006D6B92 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6B606F6C1C3ACB06006D6B92 /* MBProgressHUD.bundle */; };
+		6B606F711C3ACB06006D6B92 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B606F6E1C3ACB06006D6B92 /* MBProgressHUD.m */; };
 		6B76F6C01C244C5F00B32424 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6BD1C244C5F00B32424 /* UIImage+Extension.m */; };
 		6B76F6C11C244C5F00B32424 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6BF1C244C5F00B32424 /* UIView+Extension.m */; };
 		6B76F6C41C28333100B32424 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6C31C28333100B32424 /* UIBarButtonItem+Extension.m */; };
@@ -16,6 +23,9 @@
 		6B76F6CA1C28803100B32424 /* WBTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6C91C28803100B32424 /* WBTitleButton.m */; };
 		6B76F6CD1C299B4C00B32424 /* WBDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6CC1C299B4C00B32424 /* WBDropDownMenu.m */; };
 		6B76F6D01C29AB1400B32424 /* WBTitleMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B76F6CF1C29AB1400B32424 /* WBTitleMenuController.m */; };
+		6B8440F31C2C937B00096EDD /* WBOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8440F21C2C937B00096EDD /* WBOAuthViewController.m */; };
+		6B8F10D31C3AEB2F004DE61A /* WBAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8F10D21C3AEB2F004DE61A /* WBAccount.m */; };
+		6B8F10D71C3AF717004DE61A /* WBAccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8F10D61C3AF717004DE61A /* WBAccountTool.m */; };
 		6BB415121C243F88007FBC6C /* WBDiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB414EC1C243F88007FBC6C /* WBDiscoverTableViewController.m */; };
 		6BB415131C243F88007FBC6C /* WBHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB414F21C243F88007FBC6C /* WBHomeTableViewController.m */; };
 		6BB415161C243F88007FBC6C /* WBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB414FD1C243F88007FBC6C /* WBNavigationController.m */; };
@@ -27,6 +37,7 @@
 		6BB4151E1C243FCF007FBC6C /* WBComposeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB4151D1C243FCF007FBC6C /* WBComposeTableViewController.m */; };
 		6BDDD8021C231CF100BEE142 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BDDD8011C231CF100BEE142 /* Assets.xcassets */; };
 		6BDDD8101C231CF100BEE142 /* WeiboTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDDD80F1C231CF100BEE142 /* WeiboTests.m */; };
+		C2E697132AC1A16E814D443A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E767E1A54CE0ACE1935FC5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +55,18 @@
 		6B00E3321C29E13900E0E67A /* WBTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTabBar.m; sourceTree = "<group>"; };
 		6B090F321C2A2E9100BC44FB /* WBNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNewFeatureViewController.h; sourceTree = "<group>"; };
 		6B090F331C2A2E9100BC44FB /* WBNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNewFeatureViewController.m; sourceTree = "<group>"; };
+		6B11FA191C3B0B8300C0A61B /* UIWindow+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Extension.h"; sourceTree = "<group>"; };
+		6B11FA1A1C3B0B8300C0A61B /* UIWindow+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Extension.m"; sourceTree = "<group>"; };
+		6B11FA1C1C3B130900C0A61B /* WBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBUser.h; sourceTree = "<group>"; };
+		6B11FA1D1C3B130900C0A61B /* WBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBUser.m; sourceTree = "<group>"; };
+		6B42B3841C3B27EB0028A40C /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
+		6B42B3861C3B39B50028A40C /* WBStatuse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatuse.h; sourceTree = "<group>"; };
+		6B42B3871C3B39B50028A40C /* WBStatuse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatuse.m; sourceTree = "<group>"; };
+		6B606F6A1C3ACB06006D6B92 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
+		6B606F6B1C3ACB06006D6B92 /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		6B606F6C1C3ACB06006D6B92 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		6B606F6D1C3ACB06006D6B92 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		6B606F6E1C3ACB06006D6B92 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		6B76F6BC1C244C5F00B32424 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		6B76F6BD1C244C5F00B32424 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		6B76F6BE1C244C5F00B32424 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
@@ -58,7 +81,13 @@
 		6B76F6CC1C299B4C00B32424 /* WBDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBDropDownMenu.m; sourceTree = "<group>"; };
 		6B76F6CE1C29AB1400B32424 /* WBTitleMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTitleMenuController.h; sourceTree = "<group>"; };
 		6B76F6CF1C29AB1400B32424 /* WBTitleMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTitleMenuController.m; sourceTree = "<group>"; };
+		6B8440F11C2C937B00096EDD /* WBOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBOAuthViewController.h; sourceTree = "<group>"; };
+		6B8440F21C2C937B00096EDD /* WBOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBOAuthViewController.m; sourceTree = "<group>"; };
 		6B8447BE1C241A3B00DE577E /* Weibo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Weibo-Prefix.pch"; sourceTree = "<group>"; };
+		6B8F10D11C3AEB2F004DE61A /* WBAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBAccount.h; sourceTree = "<group>"; };
+		6B8F10D21C3AEB2F004DE61A /* WBAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBAccount.m; sourceTree = "<group>"; };
+		6B8F10D51C3AF717004DE61A /* WBAccountTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBAccountTool.h; sourceTree = "<group>"; };
+		6B8F10D61C3AF717004DE61A /* WBAccountTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBAccountTool.m; sourceTree = "<group>"; };
 		6BB414EB1C243F88007FBC6C /* WBDiscoverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBDiscoverTableViewController.h; sourceTree = "<group>"; };
 		6BB414EC1C243F88007FBC6C /* WBDiscoverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBDiscoverTableViewController.m; sourceTree = "<group>"; };
 		6BB414F11C243F88007FBC6C /* WBHomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBHomeTableViewController.h; sourceTree = "<group>"; };
@@ -82,6 +111,9 @@
 		6BDDD80B1C231CF100BEE142 /* WeiboTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiboTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BDDD80F1C231CF100BEE142 /* WeiboTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiboTests.m; sourceTree = "<group>"; };
 		6BDDD8111C231CF100BEE142 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84D4191F766E86117F080BE6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		87E767E1A54CE0ACE1935FC5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7243E268B5F42AF6B6EC5A8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2E697132AC1A16E814D443A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +135,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3569612C1DC2EC068470FD19 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				84D4191F766E86117F080BE6 /* Pods.debug.xcconfig */,
+				A7243E268B5F42AF6B6EC5A8 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		59368566D365B95D399D9C07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				87E767E1A54CE0ACE1935FC5 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6B090F301C2A2E5400BC44FB /* NewFeature */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,22 +169,83 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		6B606F681C3ACB06006D6B92 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				6B606F691C3ACB06006D6B92 /* MBProgressHUD */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		6B606F691C3ACB06006D6B92 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				6B606F6A1C3ACB06006D6B92 /* MBProgressHUD+MJ.h */,
+				6B606F6B1C3ACB06006D6B92 /* MBProgressHUD+MJ.m */,
+				6B606F6C1C3ACB06006D6B92 /* MBProgressHUD.bundle */,
+				6B606F6D1C3ACB06006D6B92 /* MBProgressHUD.h */,
+				6B606F6E1C3ACB06006D6B92 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		6B76F6BB1C244C5F00B32424 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				6B42B3841C3B27EB0028A40C /* Foundation+Log.m */,
 				6B76F6BC1C244C5F00B32424 /* UIImage+Extension.h */,
 				6B76F6BD1C244C5F00B32424 /* UIImage+Extension.m */,
 				6B76F6BE1C244C5F00B32424 /* UIView+Extension.h */,
 				6B76F6BF1C244C5F00B32424 /* UIView+Extension.m */,
 				6B76F6C21C28333100B32424 /* UIBarButtonItem+Extension.h */,
 				6B76F6C31C28333100B32424 /* UIBarButtonItem+Extension.m */,
+				6B11FA191C3B0B8300C0A61B /* UIWindow+Extension.h */,
+				6B11FA1A1C3B0B8300C0A61B /* UIWindow+Extension.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		6B8440EF1C2C927200096EDD /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				6B8F10D41C3AF6FB004DE61A /* Tool */,
+				6B8F10D01C3AEB1C004DE61A /* Model */,
+				6B8440F01C2C927200096EDD /* Controller */,
+			);
+			path = OAuth;
+			sourceTree = "<group>";
+		};
+		6B8440F01C2C927200096EDD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6B8440F11C2C937B00096EDD /* WBOAuthViewController.h */,
+				6B8440F21C2C937B00096EDD /* WBOAuthViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6B8F10D01C3AEB1C004DE61A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6B8F10D11C3AEB2F004DE61A /* WBAccount.h */,
+				6B8F10D21C3AEB2F004DE61A /* WBAccount.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6B8F10D41C3AF6FB004DE61A /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				6B8F10D51C3AF717004DE61A /* WBAccountTool.h */,
+				6B8F10D61C3AF717004DE61A /* WBAccountTool.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		6BB414E41C243F88007FBC6C /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				6B8440EF1C2C927200096EDD /* OAuth */,
 				6BB414F51C243F88007FBC6C /* Main */,
 				6BB414EF1C243F88007FBC6C /* Home */,
 				6BB415021C243F88007FBC6C /* Message */,
@@ -237,6 +348,10 @@
 		6BB414F31C243F88007FBC6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6B11FA1C1C3B130900C0A61B /* WBUser.h */,
+				6B11FA1D1C3B130900C0A61B /* WBUser.m */,
+				6B42B3861C3B39B50028A40C /* WBStatuse.h */,
+				6B42B3871C3B39B50028A40C /* WBStatuse.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				6B76F6BB1C244C5F00B32424 /* Category */,
+				6B606F681C3ACB06006D6B92 /* Lib */,
 				6BB414FB1C243F88007FBC6C /* Controller */,
 				6BB415001C243F88007FBC6C /* Model */,
 				6BB415011C243F88007FBC6C /* View */,
@@ -374,6 +490,8 @@
 				6BDDD7F41C231CF100BEE142 /* Weibo */,
 				6BDDD80E1C231CF100BEE142 /* WeiboTests */,
 				6BDDD7F31C231CF100BEE142 /* Products */,
+				3569612C1DC2EC068470FD19 /* Pods */,
+				59368566D365B95D399D9C07 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -421,9 +539,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BDDD8141C231CF100BEE142 /* Build configuration list for PBXNativeTarget "Weibo" */;
 			buildPhases = (
+				5D3521E4D30FF5B475B21C31 /* Check Pods Manifest.lock */,
 				6BDDD7EE1C231CF100BEE142 /* Sources */,
 				6BDDD7EF1C231CF100BEE142 /* Frameworks */,
 				6BDDD7F01C231CF100BEE142 /* Resources */,
+				BDEAD034DC6A8A9B6A2E1815 /* Embed Pods Frameworks */,
+				BF0CFCF73CD9F3EE931DA44C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -497,6 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BDDD8021C231CF100BEE142 /* Assets.xcassets in Resources */,
+				6B606F701C3ACB06006D6B92 /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,27 +631,84 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5D3521E4D30FF5B475B21C31 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BDEAD034DC6A8A9B6A2E1815 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF0CFCF73CD9F3EE931DA44C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6BDDD7EE1C231CF100BEE142 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B42B3881C3B39B50028A40C /* WBStatuse.m in Sources */,
 				6B76F6CD1C299B4C00B32424 /* WBDropDownMenu.m in Sources */,
 				6B76F6C71C28685B00B32424 /* WBSearchBar.m in Sources */,
 				6B00E3331C29E13900E0E67A /* WBTabBar.m in Sources */,
 				6B76F6C41C28333100B32424 /* UIBarButtonItem+Extension.m in Sources */,
+				6B11FA1E1C3B130900C0A61B /* WBUser.m in Sources */,
 				6BB415121C243F88007FBC6C /* WBDiscoverTableViewController.m in Sources */,
 				6B090F341C2A2E9100BC44FB /* WBNewFeatureViewController.m in Sources */,
 				6BB415171C243F88007FBC6C /* WBTabBarController.m in Sources */,
 				6B76F6C11C244C5F00B32424 /* UIView+Extension.m in Sources */,
 				6B76F6D01C29AB1400B32424 /* WBTitleMenuController.m in Sources */,
 				6BB415181C243F88007FBC6C /* WBMessageTableViewController.m in Sources */,
+				6B8F10D31C3AEB2F004DE61A /* WBAccount.m in Sources */,
 				6BB415191C243F88007FBC6C /* AppDelegate.m in Sources */,
+				6B8440F31C2C937B00096EDD /* WBOAuthViewController.m in Sources */,
+				6B11FA1B1C3B0B8300C0A61B /* UIWindow+Extension.m in Sources */,
 				6BB415131C243F88007FBC6C /* WBHomeTableViewController.m in Sources */,
+				6B606F711C3ACB06006D6B92 /* MBProgressHUD.m in Sources */,
 				6B76F6C01C244C5F00B32424 /* UIImage+Extension.m in Sources */,
 				6BB4151B1C243F88007FBC6C /* WBProfileTableViewController.m in Sources */,
 				6BB415161C243F88007FBC6C /* WBNavigationController.m in Sources */,
+				6B606F6F1C3ACB06006D6B92 /* MBProgressHUD+MJ.m in Sources */,
 				6B76F6CA1C28803100B32424 /* WBTitleButton.m in Sources */,
+				6B8F10D71C3AF717004DE61A /* WBAccountTool.m in Sources */,
+				6B42B3851C3B27EB0028A40C /* Foundation+Log.m in Sources */,
 				6BB4151A1C243F88007FBC6C /* main.m in Sources */,
 				6BB4151E1C243FCF007FBC6C /* WBComposeTableViewController.m in Sources */,
 			);
@@ -636,6 +815,7 @@
 		};
 		6BDDD8151C231CF100BEE142 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84D4191F766E86117F080BE6 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
@@ -652,6 +832,7 @@
 		};
 		6BDDD8161C231CF100BEE142 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7243E268B5F42AF6B6EC5A8 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";

@@ -24,35 +24,38 @@
         // 设置长按按钮,图片不要变灰
         self.adjustsImageWhenHighlighted = NO;
         // 设置图标
+        [self setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageWithName:@"navigationbar_arrow_up"] forState:UIControlStateSelected];
+        [self setBackgroundImage:[UIImage resizedImage:@"navigationbar_filter_background_highlighted"] forState:UIControlStateHighlighted];
         self.contentMode = UIViewContentModeCenter;
-    
     }
     return self;
 }
 
-/**
- *  重写图片展示方法
- */
-- (CGRect)imageRectForContentRect:(CGRect)contentRect
+- (void)layoutSubviews
 {
-    CGFloat imageY = 0;
-    CGFloat imageH = self.height;
-    CGFloat imageW = imageH;
-    CGFloat imageX = self.width - imageW;
-    return CGRectMake(imageX, imageY, imageW, imageH);
+    [super layoutSubviews];
+    self.titleLabel.x = 0;
+    self.imageView.x = CGRectGetMaxX(self.titleLabel.frame) + 5;
+    
 }
 
-/**
- *  重写文字展示方法
- */
--(CGRect)titleRectForContentRect:(CGRect)contentRect
+- (void)setFrame:(CGRect)frame
 {
-    CGFloat titleX = 0;
-    CGFloat titleY = 0;
-    CGFloat titleW = self.width - self.height;
-    CGFloat titleH = self.height;
-    return CGRectMake(titleX, titleY, titleW, titleH);
+    frame.size.width += 2;
+    [super setFrame:frame];
 }
 
+- (void)setTitle:(NSString *)title forState:(UIControlState)state
+{
+    [super setTitle:title forState:state];
+    [self sizeToFit];
+}
+
+- (void)setImage:(UIImage *)image forState:(UIControlState)state
+{
+    [super setImage:image forState:state];
+    [self sizeToFit];
+}
 
 @end
