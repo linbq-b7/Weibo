@@ -18,6 +18,7 @@
 #import <AFNetworking.h>
 #import <MJExtension.h>
 #import <UIImageView+WebCache.h>
+#import <MJRefresh.h>
 
 #import <AudioToolbox/AudioToolbox.h>
 #import <UIKit/UIKit.h>
@@ -55,12 +56,26 @@
     // 加载最新微博数据
     [self setUpNewStatuses];
     
+    // 集成上拉/下拉刷新(基于MJRefresh)
+    [self setUpMoreStatuses];
+    
     // 集成下拉刷新控件(ios自带)
-    [self setUpDownRefresh];
+    //[self setUpDownRefresh];
     
     // 集成上拉刷新控件(自定义)
-    [self setUpUpRefresh];
+    //[self setUpUpRefresh];
     
+    
+}
+
+/**
+ *  集成上拉/下拉刷新(基于MJRefresh)
+ */
+- (void)setUpMoreStatuses
+{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewStatuses)];
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreStatuses)];
     
 }
 
@@ -129,14 +144,15 @@
         
         // 刷新表格
         [self.tableView reloadData];
-        // 隐藏上拉刷新控件
-        self.tableView.tableFooterView.hidden = YES;
+        // 隐藏当前的上拉刷新控件
+        [self.tableView.mj_footer endRefreshing];
+        WBLog(@"%@",responseObject);
         
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         WBLog(@"请求失败...%@",error);
-        // 隐藏上拉刷新控件
-        self.tableView.tableFooterView.hidden = YES;
+        // 隐藏当前的上拉刷新控件
+        [self.tableView.mj_footer endRefreshing];
         
     }];
 }
@@ -179,11 +195,15 @@
         // 刷新表格
         [self.tableView reloadData];
         
+        // 隐藏当前的上拉刷新控件
+        [self.tableView.mj_header endRefreshing];
+        
         // 显示下拉刷新更新了多少条数据
         [self showNewStatusesCount:newStatuses.count];
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         WBLog(@"请求失败...%@",error);
+        // 隐藏当前的上拉刷新控件
+        [self.tableView.mj_header endRefreshing];
         
     }];
 }
@@ -445,37 +465,37 @@
  *  scrollView 监听滚动条底部上拉刷新事件
  *  并不是很好用,有BUG,暂时这样,后期改为MJRefresh控件刷新
  */
-#warning 监听scrollview滚动条并不是很好用,有BUG,暂时这样,后期改为MJRefresh控件刷新
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    
-    //    scrollView == self.tableView == self.view
-    // 如果tableView还没有数据，就直接返回
-    if (self.statuses.count == 0 || self.tableView.tableFooterView.isHidden == NO) return;
-//    WBLog(@"scrollView---");
-    CGFloat offsetY = scrollView.contentOffset.y;
-    
-    // 当最后一个cell完全显示在眼前时，contentOffset的y值
-    CGFloat judgeOffsetY = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.height - self.tableView.tableFooterView.height;
-    if (offsetY >= judgeOffsetY) { // 最后一个cell完全进入视野范围内
-        // 显示footer
-        self.tableView.tableFooterView.hidden = NO;
-        
-        // 加载更多的微博数据
-        [self loadMoreStatuses];
-        WBLog(@"加载更多的微博数据");
-    }
-    
-    /*
-     contentInset：除具体内容以外的边框尺寸
-     contentSize: 里面的具体内容（header、cell、footer），除掉contentInset以外的尺寸
-     contentOffset:
-     1.它可以用来判断scrollView滚动到什么位置
-     2.指scrollView的内容超出了scrollView顶部的距离（除掉contentInset以外的尺寸）
-     */
-    
-    
-}
+//#warning 监听scrollview滚动条并不是很好用,有BUG,暂时这样,后期改为MJRefresh控件刷新
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    
+//    //    scrollView == self.tableView == self.view
+//    // 如果tableView还没有数据，就直接返回
+//    if (self.statuses.count == 0 || self.tableView.tableFooterView.isHidden == NO) return;
+////    WBLog(@"scrollView---");
+//    CGFloat offsetY = scrollView.contentOffset.y;
+//    
+//    // 当最后一个cell完全显示在眼前时，contentOffset的y值
+//    CGFloat judgeOffsetY = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.height - self.tableView.tableFooterView.height;
+//    if (offsetY >= judgeOffsetY) { // 最后一个cell完全进入视野范围内
+//        // 显示footer
+//        self.tableView.tableFooterView.hidden = NO;
+//        
+//        // 加载更多的微博数据
+//        [self loadMoreStatuses];
+//        WBLog(@"加载更多的微博数据");
+//    }
+//    
+//    /*
+//     contentInset：除具体内容以外的边框尺寸
+//     contentSize: 里面的具体内容（header、cell、footer），除掉contentInset以外的尺寸
+//     contentOffset:
+//     1.它可以用来判断scrollView滚动到什么位置
+//     2.指scrollView的内容超出了scrollView顶部的距离（除掉contentInset以外的尺寸）
+//     */
+//    
+//    
+//}
 
 
 

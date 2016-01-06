@@ -86,11 +86,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Weibo/classes/Home/Controller/WBHomeTableViewController.m"
-            timestampString = "473734874.679954"
+            timestampString = "473751293.229909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
             landmarkName = "-setUpUserInfo"
             landmarkType = "5">
          </BreakpointContent>
@@ -108,6 +108,36 @@
             startingLineNumber = "52"
             endingLineNumber = "52"
             landmarkName = "-setTitle:forState:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weibo/classes/Home/Controller/WBHomeTableViewController.m"
+            timestampString = "473750724.320188"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weibo/classes/Home/Controller/WBHomeTableViewController.m"
+            timestampString = "473751727.632472"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "-loadMoreStatuses"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
