@@ -12,7 +12,7 @@
 #import "WBTitleMenuController.h"
 #import "WBAccountTool.h"
 #import "WBUser.h"
-#import "WBStatuses.h"
+#import "WBStatusesTool.h"
 #import "WBLoadMoreFooter.h"
 
 #import <AFNetworking.h>
@@ -53,6 +53,9 @@
     // 设置用户昵称
     [self setUpUserInfo];
     
+    // 加载上次保存的微博数据
+    [self setUpLastStatuses];
+    
     // 加载最新微博数据
     [self setUpNewStatuses];
     
@@ -66,6 +69,24 @@
     //[self setUpUpRefresh];
     
     
+}
+
+/**
+ *  加载上次保存的微博数据
+ */
+- (void)setUpLastStatuses
+{
+    NSArray *lastArray = [WBStatusesTool loadStatuses];
+    // 将上次沙盒中保存的微博数据显示出来
+    [self.statuses addObjectsFromArray:lastArray];
+}
+
+/**
+ *  将最新的20条微博存入沙盒
+ */
+- (void)savestatusesInMachine
+{
+    [WBStatusesTool saveStatuses:self.statuses];
 }
 
 /**
@@ -198,6 +219,9 @@
         // 隐藏当前的上拉刷新控件
         [self.tableView.mj_header endRefreshing];
         
+        // 保存最新的微博数据到沙盒中
+        [self savestatusesInMachine];
+        
         // 显示下拉刷新更新了多少条数据
         [self showNewStatusesCount:newStatuses.count];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -280,11 +304,13 @@
         // json转为模型
         NSArray *newStatuses = [WBStatuses mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
-        // 将最新的微博数据加到数组最前面
-        NSRange range = NSMakeRange(0, newStatuses.count);
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-        [self.statuses insertObjects:newStatuses atIndexes:indexSet];
-      
+        // 最新的微博数据20条
+        [self.statuses removeAllObjects];
+        [self.statuses addObjectsFromArray:newStatuses];
+        
+        // 保存最新的微博数据到沙盒中
+        [self savestatusesInMachine];
+        
         // 刷新表格
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

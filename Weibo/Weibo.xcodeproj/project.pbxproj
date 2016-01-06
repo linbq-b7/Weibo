@@ -11,6 +11,7 @@
 		6B090F341C2A2E9100BC44FB /* WBNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B090F331C2A2E9100BC44FB /* WBNewFeatureViewController.m */; };
 		6B11FA1B1C3B0B8300C0A61B /* UIWindow+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B11FA1A1C3B0B8300C0A61B /* UIWindow+Extension.m */; };
 		6B11FA1E1C3B130900C0A61B /* WBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B11FA1D1C3B130900C0A61B /* WBUser.m */; };
+		6B2B9FA01C3CFBE0001480C3 /* WBStatusesTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2B9F9F1C3CFBE0001480C3 /* WBStatusesTool.m */; };
 		6B42B3851C3B27EB0028A40C /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B42B3841C3B27EB0028A40C /* Foundation+Log.m */; };
 		6B42B3881C3B39B50028A40C /* WBStatuses.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B42B3871C3B39B50028A40C /* WBStatuses.m */; };
 		6B606F6F1C3ACB06006D6B92 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B606F6B1C3ACB06006D6B92 /* MBProgressHUD+MJ.m */; };
@@ -61,6 +62,8 @@
 		6B11FA1A1C3B0B8300C0A61B /* UIWindow+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Extension.m"; sourceTree = "<group>"; };
 		6B11FA1C1C3B130900C0A61B /* WBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBUser.h; sourceTree = "<group>"; };
 		6B11FA1D1C3B130900C0A61B /* WBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBUser.m; sourceTree = "<group>"; };
+		6B2B9F9E1C3CFBE0001480C3 /* WBStatusesTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatusesTool.h; sourceTree = "<group>"; };
+		6B2B9F9F1C3CFBE0001480C3 /* WBStatusesTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatusesTool.m; sourceTree = "<group>"; };
 		6B42B3841C3B27EB0028A40C /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
 		6B42B3861C3B39B50028A40C /* WBStatuses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatuses.h; sourceTree = "<group>"; };
 		6B42B3871C3B39B50028A40C /* WBStatuses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatuses.m; sourceTree = "<group>"; };
@@ -172,6 +175,15 @@
 				6B090F331C2A2E9100BC44FB /* WBNewFeatureViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		6B2B9F9A1C3CFB9A001480C3 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				6B2B9F9E1C3CFBE0001480C3 /* WBStatusesTool.h */,
+				6B2B9F9F1C3CFBE0001480C3 /* WBStatusesTool.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		6B606F681C3ACB06006D6B92 /* Lib */ = {
@@ -332,6 +344,7 @@
 		6BB414EF1C243F88007FBC6C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6B2B9F9A1C3CFB9A001480C3 /* Tool */,
 				6BB414F01C243F88007FBC6C /* Controller */,
 				6BB414F31C243F88007FBC6C /* Model */,
 				6BB414F41C243F88007FBC6C /* View */,
@@ -707,6 +720,7 @@
 				6BB415181C243F88007FBC6C /* WBMessageTableViewController.m in Sources */,
 				6B8F10D31C3AEB2F004DE61A /* WBAccount.m in Sources */,
 				6BB415191C243F88007FBC6C /* AppDelegate.m in Sources */,
+				6B2B9FA01C3CFBE0001480C3 /* WBStatusesTool.m in Sources */,
 				6B8440F31C2C937B00096EDD /* WBOAuthViewController.m in Sources */,
 				6B11FA1B1C3B0B8300C0A61B /* UIWindow+Extension.m in Sources */,
 				6BB415131C243F88007FBC6C /* WBHomeTableViewController.m in Sources */,
