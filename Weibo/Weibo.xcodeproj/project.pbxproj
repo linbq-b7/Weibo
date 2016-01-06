@@ -12,7 +12,7 @@
 		6B11FA1B1C3B0B8300C0A61B /* UIWindow+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B11FA1A1C3B0B8300C0A61B /* UIWindow+Extension.m */; };
 		6B11FA1E1C3B130900C0A61B /* WBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B11FA1D1C3B130900C0A61B /* WBUser.m */; };
 		6B42B3851C3B27EB0028A40C /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B42B3841C3B27EB0028A40C /* Foundation+Log.m */; };
-		6B42B3881C3B39B50028A40C /* WBStatuse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B42B3871C3B39B50028A40C /* WBStatuse.m */; };
+		6B42B3881C3B39B50028A40C /* WBStatuses.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B42B3871C3B39B50028A40C /* WBStatuses.m */; };
 		6B606F6F1C3ACB06006D6B92 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B606F6B1C3ACB06006D6B92 /* MBProgressHUD+MJ.m */; };
 		6B606F701C3ACB06006D6B92 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6B606F6C1C3ACB06006D6B92 /* MBProgressHUD.bundle */; };
 		6B606F711C3ACB06006D6B92 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B606F6E1C3ACB06006D6B92 /* MBProgressHUD.m */; };
@@ -37,6 +37,8 @@
 		6BB4151E1C243FCF007FBC6C /* WBComposeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB4151D1C243FCF007FBC6C /* WBComposeTableViewController.m */; };
 		6BDDD8021C231CF100BEE142 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BDDD8011C231CF100BEE142 /* Assets.xcassets */; };
 		6BDDD8101C231CF100BEE142 /* WeiboTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDDD80F1C231CF100BEE142 /* WeiboTests.m */; };
+		6BFD6ADB1C3C4CB4002543ED /* WBLoadMoreFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD6ADA1C3C4CB4002543ED /* WBLoadMoreFooter.m */; };
+		6BFD6ADD1C3C4D15002543ED /* WBLoadMoreFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BFD6ADC1C3C4D15002543ED /* WBLoadMoreFooter.xib */; };
 		C2E697132AC1A16E814D443A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E767E1A54CE0ACE1935FC5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -60,8 +62,8 @@
 		6B11FA1C1C3B130900C0A61B /* WBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBUser.h; sourceTree = "<group>"; };
 		6B11FA1D1C3B130900C0A61B /* WBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBUser.m; sourceTree = "<group>"; };
 		6B42B3841C3B27EB0028A40C /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
-		6B42B3861C3B39B50028A40C /* WBStatuse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatuse.h; sourceTree = "<group>"; };
-		6B42B3871C3B39B50028A40C /* WBStatuse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatuse.m; sourceTree = "<group>"; };
+		6B42B3861C3B39B50028A40C /* WBStatuses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatuses.h; sourceTree = "<group>"; };
+		6B42B3871C3B39B50028A40C /* WBStatuses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatuses.m; sourceTree = "<group>"; };
 		6B606F6A1C3ACB06006D6B92 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
 		6B606F6B1C3ACB06006D6B92 /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
 		6B606F6C1C3ACB06006D6B92 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
@@ -111,6 +113,9 @@
 		6BDDD80B1C231CF100BEE142 /* WeiboTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiboTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BDDD80F1C231CF100BEE142 /* WeiboTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiboTests.m; sourceTree = "<group>"; };
 		6BDDD8111C231CF100BEE142 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BFD6AD91C3C4CB4002543ED /* WBLoadMoreFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBLoadMoreFooter.h; sourceTree = "<group>"; };
+		6BFD6ADA1C3C4CB4002543ED /* WBLoadMoreFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBLoadMoreFooter.m; sourceTree = "<group>"; };
+		6BFD6ADC1C3C4D15002543ED /* WBLoadMoreFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBLoadMoreFooter.xib; sourceTree = "<group>"; };
 		84D4191F766E86117F080BE6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		87E767E1A54CE0ACE1935FC5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7243E268B5F42AF6B6EC5A8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -350,8 +355,8 @@
 			children = (
 				6B11FA1C1C3B130900C0A61B /* WBUser.h */,
 				6B11FA1D1C3B130900C0A61B /* WBUser.m */,
-				6B42B3861C3B39B50028A40C /* WBStatuse.h */,
-				6B42B3871C3B39B50028A40C /* WBStatuse.m */,
+				6B42B3861C3B39B50028A40C /* WBStatuses.h */,
+				6B42B3871C3B39B50028A40C /* WBStatuses.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -363,6 +368,9 @@
 				6B76F6C91C28803100B32424 /* WBTitleButton.m */,
 				6B76F6CB1C299B4C00B32424 /* WBDropDownMenu.h */,
 				6B76F6CC1C299B4C00B32424 /* WBDropDownMenu.m */,
+				6BFD6AD91C3C4CB4002543ED /* WBLoadMoreFooter.h */,
+				6BFD6ADA1C3C4CB4002543ED /* WBLoadMoreFooter.m */,
+				6BFD6ADC1C3C4D15002543ED /* WBLoadMoreFooter.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -617,6 +625,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BFD6ADD1C3C4D15002543ED /* WBLoadMoreFooter.xib in Resources */,
 				6BDDD8021C231CF100BEE142 /* Assets.xcassets in Resources */,
 				6B606F701C3ACB06006D6B92 /* MBProgressHUD.bundle in Resources */,
 			);
@@ -684,7 +693,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B42B3881C3B39B50028A40C /* WBStatuse.m in Sources */,
+				6B42B3881C3B39B50028A40C /* WBStatuses.m in Sources */,
 				6B76F6CD1C299B4C00B32424 /* WBDropDownMenu.m in Sources */,
 				6B76F6C71C28685B00B32424 /* WBSearchBar.m in Sources */,
 				6B00E3331C29E13900E0E67A /* WBTabBar.m in Sources */,
@@ -708,6 +717,7 @@
 				6B606F6F1C3ACB06006D6B92 /* MBProgressHUD+MJ.m in Sources */,
 				6B76F6CA1C28803100B32424 /* WBTitleButton.m in Sources */,
 				6B8F10D71C3AF717004DE61A /* WBAccountTool.m in Sources */,
+				6BFD6ADB1C3C4CB4002543ED /* WBLoadMoreFooter.m in Sources */,
 				6B42B3851C3B27EB0028A40C /* Foundation+Log.m in Sources */,
 				6BB4151A1C243F88007FBC6C /* main.m in Sources */,
 				6BB4151E1C243FCF007FBC6C /* WBComposeTableViewController.m in Sources */,

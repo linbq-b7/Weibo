@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class WBUser;
 
-@interface WBStatuse : NSObject
+@interface WBStatuses : NSObject
 
 /** created_at	string	微博创建时间 */
 @property (nonatomic ,copy)  NSString *created_at;
@@ -33,7 +33,7 @@
 @property (nonatomic ,copy)  NSString *original_pic;
 
 /**  user	object	微博作者的用户信息字段 详细 */
-@property (nonatomic ,copy)  WBUser *user;
+@property (nonatomic ,strong)  WBUser *user;
 
 
 /**

@@ -6,9 +6,9 @@
 //  Copyright © 2016年 linbq-b7. All rights reserved.
 //
 
-#import "WBStatuse.h"
+#import "WBStatuses.h"
 
-@implementation WBStatuse
+@implementation WBStatuses
 
 
 
