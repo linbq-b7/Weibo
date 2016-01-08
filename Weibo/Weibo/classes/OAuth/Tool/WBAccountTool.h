@@ -25,4 +25,9 @@
  */
 + (WBAccount *)account;
 
+/**
+ *  注销,将微博账号信息存放文件删除
+ */
++ (void)LogOut;
+
 @end

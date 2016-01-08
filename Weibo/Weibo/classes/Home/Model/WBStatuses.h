@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@class WBUser;
+#import "WBStatusesPhoto.h"
 
+@class WBUser;
 @interface WBStatuses : NSObject
 
 /** created_at	string	微博创建时间 */
@@ -35,6 +36,12 @@
 /**  user	object	微博作者的用户信息字段 详细 */
 @property (nonatomic ,strong)  WBUser *user;
 
+/** retweeted_status	object	被转发的原微博信息字段，当该微博为转发微博时返回 详细 */
+@property (nonatomic, strong)  WBStatuses *retweeted_status;
+
+/** pic_urls	object	微博配图ID。多图时返回多图ID，用来拼接图片url。用返回字段thumbnail_pic的地址配上该返回字段的图片ID，即可得到多个图片url。
+ */
+@property (nonatomic, strong)  NSArray<WBStatusesPhoto *> *pic_urls;
 
 /**
  *
@@ -50,14 +57,13 @@
  
  geo	object	地理信息字段 详细
  
- retweeted_status	object	被转发的原微博信息字段，当该微博为转发微博时返回 详细
+ 
  reposts_count	int	转发数
  comments_count	int	评论数
  attitudes_count	int	表态数
  mlevel	int	暂未支持
  visible	object	微博的可见性及指定可见分组信息。该object中type取值，0：普通微博，1：私密微博，3：指定分组微博，4：密友微博；list_id为分组的组号
- pic_ids	object	微博配图ID。多图时返回多图ID，用来拼接图片url。用返回字段thumbnail_pic的地址配上该返回字段的图片ID，即可得到多个图片url。
- ad	object array	微博流内的推广微博ID
+  ad	object array	微博流内的推广微博ID
  */
 
 

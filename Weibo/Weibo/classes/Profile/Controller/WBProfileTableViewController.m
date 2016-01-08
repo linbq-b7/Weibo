@@ -7,6 +7,8 @@
 //
 
 #import "WBProfileTableViewController.h"
+#import "WBAccountTool.h"
+#import "WBOAuthViewController.h"
 
 @interface WBProfileTableViewController ()
 
@@ -43,7 +45,14 @@
     UIViewController *vc = [[UIViewController alloc]init];
     vc.view.backgroundColor = WBRandomColor;
     vc.title = @"设置";
-    [self.navigationController pushViewController:vc animated:YES];
+    //[self.navigationController pushViewController:vc animated:YES];
+    
+    // 退出登录
+    // 现在这里实现,后期在做调整,为了真机测试方便
+    // 清空沙盒中存放的微博账号信息
+    [WBAccountTool LogOut];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    window.rootViewController = [[WBOAuthViewController alloc]init];
     
 }
 

@@ -7,7 +7,15 @@
 //
 
 #import "WBStatuses.h"
+#import "WBStatusesPhoto.h"
+
+#import <MJExtension.h>
 
 @implementation WBStatuses
+
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{ @"pic_urls" : [WBStatusesPhoto class]};
+}
 
 @end

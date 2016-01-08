@@ -14,6 +14,8 @@
 #import "WBUser.h"
 #import "WBStatusesTool.h"
 #import "WBLoadMoreFooter.h"
+#import "WBStatusesCell.h"
+#import "WBStatusesFrame.h"
 
 #import <AFNetworking.h>
 #import <MJExtension.h>
@@ -25,7 +27,7 @@
 
 @interface WBHomeTableViewController () <WBDropDownMenuDelegate>
 /** 存放微博数据可变数组 */
-@property (nonatomic ,strong) NSMutableArray *statuses;
+@property (nonatomic ,strong) NSMutableArray<WBStatusesFrame *> *statusesFrameArray;
 @end
 
 @implementation WBHomeTableViewController
@@ -33,14 +35,14 @@
 /**
  *  懒加载
  *
- *  @return statuses实例
+ *  @return statusesFrameArray实例
  */
-- (NSMutableArray *)statuses
+- (NSMutableArray *)statusesFrameArray
 {
-    if (!_statuses) {
-        self.statuses = [NSMutableArray array];
+    if (!_statusesFrameArray) {
+        self.statusesFrameArray = [NSMutableArray array];
     }
-    return _statuses;
+    return _statusesFrameArray;
     
 }
 
@@ -62,23 +64,107 @@
     // 集成上拉/下拉刷新(基于MJRefresh)
     [self setUpMoreStatuses];
     
-    // 集成下拉刷新控件(ios自带)
-    //[self setUpDownRefresh];
-    
-    // 集成上拉刷新控件(自定义)
-    //[self setUpUpRefresh];
-    
-    
+    // 定时器显示多少条未读数据
+    [self setUpRunLoopTimer];
 }
+
+/**
+ *  定时器
+ */
+- (void)setUpRunLoopTimer
+{
+    // 每60秒向服务器请求一次未读消息
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(setUpUnReadCount) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+}
+
+/**
+ *  显示多少条未读数据
+ *  获取某个用户的各种消息未读数
+ *  https://rm.api.weibo.com/2/remind/unread_count.json
+ *  source          false	string	采用OAuth授权方式不需要此参数，其他授权方式为必填参数，数值为应用的AppKey。
+ *  access_token	false	string	采用OAuth授权方式为必填参数，其他授权方式不需要此参数，OAuth授权后获得。
+ *  uid             true	int64	需要获取消息未读数的用户UID，必须是当前登录用户。
+ *  callback        false	string	JSONP回调函数，用于前端调用返回JS格式的信息。
+ *  unread_message	false	boolean	未读数版本。0：原版未读数，1：新版未读数。默认为0。
+ */
+- (void)setUpUnReadCount
+{
+    // 请求管理者
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    // 拼接请求参数
+    WBAccount *account = [WBAccountTool account];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token;
+    params[@"uid"] = account.uid;
+    // 发起请求
+    [mgr GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nonnull responseObject) {
+        // 微博未读数
+        NSString *unReadCount = [responseObject[@"status"] description];
+        // 设置未读消息数量
+        [self setUnReadCount:unReadCount];
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        WBLog(@"请求失败...%@",error);
+    }];
+}
+
+/**
+ *  设置未读消息数量
+ *
+ *  @param unReadCount 未读消息数量
+ */
+- (void)setUnReadCount:(NSString *)unReadCount
+{
+    if (IOS8) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
+    
+    WBLog(@"你有%d条新的消息,请注意查收",unReadCount.intValue);
+    
+    if ([unReadCount isEqualToString:@"0"]) {
+        self.tabBarItem.badgeValue = nil;
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    } else {
+        self.tabBarItem.badgeValue = unReadCount;
+        [UIApplication sharedApplication].applicationIconBadgeNumber = [unReadCount intValue];
+    }
+}
+
+/**
+ *  加载微博信息后设置剩余未读消息数量
+ */
+- (void)readAndSetUnReadCount:(unsigned long)readCount
+{
+    NSString *unReadCount = self.tabBarItem.badgeValue;
+    if (unReadCount) {
+        // 有未读消息数
+        unsigned long count = unReadCount.intValue - readCount;
+        if (count > 0) {
+            // 未读消息数量大于0
+            [self setUnReadCount:[NSString stringWithFormat:@"%lu",count]];
+        } else if (count <= 0) {
+            // 未读消息数量小于等于0
+            [self setUnReadCount:@"0"];
+        }
+    }
+}
+
 
 /**
  *  加载上次保存的微博数据
  */
 - (void)setUpLastStatuses
 {
+    // 获取上次存放沙盒中的微博数据
     NSArray *lastArray = [WBStatusesTool loadStatuses];
+    
+    // 将微博模型数组 转为 微博Frame模型数组
+    NSArray *statusesFrameArray = [self statusesArrayToStatusesFrameArray:lastArray];
+    
     // 将上次沙盒中保存的微博数据显示出来
-    [self.statuses addObjectsFromArray:lastArray];
+    [self.statusesFrameArray addObjectsFromArray:statusesFrameArray];
 }
 
 /**
@@ -86,8 +172,49 @@
  */
 - (void)savestatusesInMachine
 {
-    [WBStatusesTool saveStatuses:self.statuses];
+    // 将微博Frame模型数组 转为 微博模型数组
+    NSArray *statusesArray = [self statusesFrameArrayToStatusesArray:self.statusesFrameArray];
+    
+    // 将微博数据保存到沙盒中
+    [WBStatusesTool saveStatuses:statusesArray];
 }
+
+/**
+ *  将微博模型数组 转为 微博Frame模型数组
+ *
+ *  @param statusesArray 微博模型数组
+ *
+ *  @return 微博Frame模型数组
+ */
+- (NSArray *)statusesArrayToStatusesFrameArray:(NSArray *)statusesArray
+{
+    NSMutableArray *statusesFrameArray = [NSMutableArray array];
+    for (WBStatuses *statuses in statusesArray) {
+        WBStatusesFrame *statusesFrame = [[WBStatusesFrame alloc]init];
+        statusesFrame.statuses = statuses;
+        [statusesFrameArray addObject:statusesFrame];
+    }
+    return statusesFrameArray;
+}
+
+/**
+ *  将微博Frame模型数组 转为 微博模型数组
+ *
+ *  @param statusesFrameArray 微博Frame模型数组
+ *
+ *  @return 微博模型数组
+ */
+- (NSArray *)statusesFrameArrayToStatusesArray:(NSArray *)statusesFrameArray
+{
+    NSMutableArray *statusesArray = [NSMutableArray array];
+    for (WBStatusesFrame *statusesFrame in statusesFrameArray) {
+        WBStatuses *statuses = [[WBStatuses alloc]init];
+        statuses = statusesFrame.statuses;
+        [statusesArray addObject:statuses];
+    }
+    return statusesArray;
+}
+
 
 /**
  *  集成上拉/下拉刷新(基于MJRefresh)
@@ -98,6 +225,11 @@
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreStatuses)];
     
+    // 集成下拉刷新控件(ios自带)
+    //[self setUpDownRefresh];
+    
+    // 集成上拉刷新控件(自定义)
+    //[self setUpUpRefresh];
 }
 
 /**
@@ -152,7 +284,7 @@
     WBAccount *account = [WBAccountTool account];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
-    WBStatuses *lastStatuses = [self.statuses lastObject];
+    WBStatuses *lastStatuses = [self.statusesFrameArray lastObject].statuses;
     long long maxId = lastStatuses.idstr.longLongValue - 1;
     params[@"max_id"] = @(maxId);
     // 发起请求
@@ -160,8 +292,11 @@
         // json转为模型
         NSArray *moreStatuses = [WBStatuses mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
+        // 将微博模型数组 转为 微博Frame模型数组
+        NSArray *statusesFrameArray = [self statusesArrayToStatusesFrameArray:moreStatuses];
+        
         // 将最新的微博数据加到数组最后
-        [self.statuses addObjectsFromArray:moreStatuses];
+        [self.statusesFrameArray addObjectsFromArray:statusesFrameArray];
         
         // 刷新表格
         [self.tableView reloadData];
@@ -200,18 +335,21 @@
     WBAccount *account = [WBAccountTool account];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
-    WBStatuses *firstStatuses = [self.statuses firstObject];
-    long long since_id = firstStatuses.idstr.longLongValue - 1;
+    WBStatuses *firstStatuses = [self.statusesFrameArray firstObject].statuses;
+    long long since_id = firstStatuses.idstr.longLongValue;
     params[@"since_id"] = @(since_id);
     // 发起请求
-    [mgr GET:@"https://api.weibo.com/2/statuses/public_timeline.json" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nonnull responseObject) {
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nonnull responseObject) {
         // json转为模型
         NSArray *newStatuses = [WBStatuses mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        // 将微博模型数组 转为 微博Frame模型数组
+        NSArray *statusesFrameArray = [self statusesArrayToStatusesFrameArray:newStatuses];
         
         // 将最新的微博数据加到数组最前面
         NSRange range = NSMakeRange(0, newStatuses.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-        [self.statuses insertObjects:newStatuses atIndexes:indexSet];
+        [self.statusesFrameArray insertObjects:statusesFrameArray atIndexes:indexSet];
         
         // 刷新表格
         [self.tableView reloadData];
@@ -224,6 +362,10 @@
         
         // 显示下拉刷新更新了多少条数据
         [self showNewStatusesCount:newStatuses.count];
+        
+        // 下拉刷新数据后设置剩余未读消息数量
+        [self readAndSetUnReadCount:newStatuses.count];
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         WBLog(@"请求失败...%@",error);
         // 隐藏当前的上拉刷新控件
@@ -235,12 +377,12 @@
 /**
  *  显示下拉刷新更新了多少条数据
  */
-- (void)showNewStatusesCount:(int)count
+- (void)showNewStatusesCount:(unsigned long)count
 {
     // 1.创建label
     UILabel *countLabel = [[UILabel alloc]init];
     countLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_new_status_background"]];
-    countLabel.text = [NSString stringWithFormat:@" %d 条新微博",count];
+    countLabel.text = [NSString stringWithFormat:@" %lu 条新微博",count];
     countLabel.textAlignment = NSTextAlignmentCenter;
     countLabel.textColor = [UIColor whiteColor];
     
@@ -300,13 +442,16 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
     // 发起请求
-    [mgr GET:@"https://api.weibo.com/2/statuses/public_timeline.json" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nonnull responseObject) {
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nonnull responseObject) {
         // json转为模型
         NSArray *newStatuses = [WBStatuses mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+
+        // 将微博模型数组 转为 微博Frame模型数组
+        NSArray *statusesFrameArray = [self statusesArrayToStatusesFrameArray:newStatuses];
         
         // 最新的微博数据20条
-        [self.statuses removeAllObjects];
-        [self.statuses addObjectsFromArray:newStatuses];
+        [self.statusesFrameArray removeAllObjects];
+        [self.statusesFrameArray addObjectsFromArray:statusesFrameArray];
         
         // 保存最新的微博数据到沙盒中
         [self savestatusesInMachine];
@@ -321,7 +466,7 @@
 
 /**
  *  设置用户昵称
- *  https://api.weibo.com/2/users/show.json
+ *  https://api.weibo.com/2/statuses/friends_timeline.json
  *
  *  source          false	string	采用OAuth授权方式不需要此参数，其他授权方式为必填参数，数值为应用的AppKey。
  *  access_token    false	string	采用OAuth授权方式为必填参数，其他授权方式不需要此参数，OAuth授权后获得。
@@ -341,7 +486,7 @@
     params[@"uid"] = account.uid;
     
     // 发起请求
-    [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nonnull responseObject) {
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nonnull responseObject) {
         // json转为模型
         WBUser *user = [WBUser mj_objectWithKeyValues:responseObject];
         NSString *screen_name = user.screen_name;
@@ -441,23 +586,16 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.statuses.count;
+    return self.statusesFrameArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *ID = @"statuses";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
-    //cell.textLabel.text = [NSString stringWithFormat:@"首页测试数据---%ld",(long)indexPath.row];
-    WBStatuses *statuse = self.statuses[indexPath.row];
-    cell.textLabel.text = statuse.text;
-    WBUser *user = statuse.user;
-    UIImage *avatar_default_small = [UIImage imageNamed:@"avatar_default"];
- 
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url]  placeholderImage:avatar_default_small];
+    // 创建自定义cell
+    WBStatusesCell *cell = [WBStatusesCell cellWithtableView:tableView];
+    
+    // 将微博FRAME模型传给cell
+    cell.statusesFrame = self.statusesFrameArray[indexPath.row];
     
     
     return cell;
@@ -465,17 +603,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIViewController *tableVC = [[UIViewController alloc]init];
-    tableVC.view.backgroundColor = WBRandomColor;
-    [self.navigationController pushViewController:tableVC animated:YES];
+//    UIViewController *tableVC = [[UIViewController alloc]init];
+//    tableVC.view.backgroundColor = WBRandomColor;
+//    [self.navigationController pushViewController:tableVC animated:YES];
 
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.statusesFrameArray[indexPath.row].cellHeight;
 }
 
 #pragma mark - WBDropDownMenuDelegate代理方法
 /**
  *  代理方法,当下拉弹出面板消失时,改版titlebtn图标显示(向上/向下)
- *
- *  @param menu <#menu description#>
  */
 - (void)dropDownMenudismiss:(WBDropDownMenu *)menu
 {
@@ -486,43 +627,5 @@
 {
     ((UIButton *)self.navigationItem.titleView).selected = YES;
 }
-
-/**
- *  scrollView 监听滚动条底部上拉刷新事件
- *  并不是很好用,有BUG,暂时这样,后期改为MJRefresh控件刷新
- */
-//#warning 监听scrollview滚动条并不是很好用,有BUG,暂时这样,后期改为MJRefresh控件刷新
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    
-//    //    scrollView == self.tableView == self.view
-//    // 如果tableView还没有数据，就直接返回
-//    if (self.statuses.count == 0 || self.tableView.tableFooterView.isHidden == NO) return;
-////    WBLog(@"scrollView---");
-//    CGFloat offsetY = scrollView.contentOffset.y;
-//    
-//    // 当最后一个cell完全显示在眼前时，contentOffset的y值
-//    CGFloat judgeOffsetY = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.height - self.tableView.tableFooterView.height;
-//    if (offsetY >= judgeOffsetY) { // 最后一个cell完全进入视野范围内
-//        // 显示footer
-//        self.tableView.tableFooterView.hidden = NO;
-//        
-//        // 加载更多的微博数据
-//        [self loadMoreStatuses];
-//        WBLog(@"加载更多的微博数据");
-//    }
-//    
-//    /*
-//     contentInset：除具体内容以外的边框尺寸
-//     contentSize: 里面的具体内容（header、cell、footer），除掉contentInset以外的尺寸
-//     contentOffset:
-//     1.它可以用来判断scrollView滚动到什么位置
-//     2.指scrollView的内容超出了scrollView顶部的距离（除掉contentInset以外的尺寸）
-//     */
-//    
-//    
-//}
-
-
 
 @end

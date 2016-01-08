@@ -55,7 +55,7 @@
  */
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [MBProgressHUD showMessage:@"正在加载中..."];
+    //[MBProgressHUD showMessage:@"正在加载中..."];
     
 }
 
@@ -123,6 +123,8 @@
  */
 - (void)accessTokenWithCode:(NSString *)code
 {
+    [MBProgressHUD hideHUD];
+    
     // 1.AFN请求管理者
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     // 设置接收类型为新浪返回类型text/plain

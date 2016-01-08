@@ -82,6 +82,16 @@
 /** lang	string	用户当前的语言版本，zh-cn：简体中文，zh-tw：繁体中文，en：英语 */
 @property (nonatomic ,copy)  NSString *lang;
 
+/** 会员类型 >2 才是VIP*/
+@property (nonatomic ,assign)  int mbtype;
+
+/** 会员等级 */
+@property (nonatomic ,assign)  int mbrank;
+
+/** 是否是vip */
+@property (nonatomic ,assign)  BOOL vip;
+
+
 /**
  *
  未实行转模型的属性

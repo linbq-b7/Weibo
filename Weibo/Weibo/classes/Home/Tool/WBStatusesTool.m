@@ -27,7 +27,7 @@
 
     // 将模型数组转为字典
     NSArray *dicArray = [WBStatuses mj_keyValuesArrayWithObjectArray:lastArray];
-
+    
     // 将数据存入沙盒中
     [dicArray writeToFile:WBLastStatusesPath atomically:YES];
 

@@ -13,6 +13,7 @@
 #import "UIView+Extension.h"
 #import "UIBarButtonItem+Extension.h"
 #import "UIWindow+Extension.h"
+#import "NSString+Extension.h"
 
 #ifdef DEBUG // 调试状态, 打开LOG功能
 #define WBLog(...) NSLog(__VA_ARGS__)
@@ -29,6 +30,8 @@
 // 判断是否ios7.0 以上版本
 #define IOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 
+// 判断是否ios7.0 以上版本
+#define IOS8 ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
 
 // 导航栏标题字体大小
 #define WBNavTitleFont [UIFont systemFontOfSize:20]
